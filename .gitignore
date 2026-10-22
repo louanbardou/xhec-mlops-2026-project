@@ -85,3 +85,10 @@ secrets/*
 
 # Mac files
 .DS_Store
+
+# MLflow
+mlruns/
+mlflow.db
+
+# trained model
+src/web_service/local_objects/*.pkl
