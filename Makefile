@@ -1,4 +1,4 @@
-.PHONY: install lint train api docker-build docker-run
+.PHONY: install lint train prefect-server deploy api docker-build docker-run
 
 install:
 	uv sync
@@ -10,6 +10,12 @@ lint:
 
 train:
 	uv run python -m src.modelling.main data/abalone.csv
+
+prefect-server:
+	uv run prefect server start
+
+deploy:
+	uv run python -m src.modelling.deploy
 
 api:
 	uv run uvicorn src.web_service.main:app --port 8001

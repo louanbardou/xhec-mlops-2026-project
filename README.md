@@ -34,6 +34,18 @@ uv run pytest   # runs the tests
 The code is in `src/modelling/`: `preprocessing.py` (load + split), `training.py` (model + metrics), `predicting.py` (predict with the saved model), `main.py` (runs everything).
 The model is a linear regression, with `Sex` one-hot encoded inside a sklearn pipeline (see `notebooks/` for the EDA and why we chose it).
 
+## Prefect (automatic retraining)
+
+`main.py` is a Prefect flow (one task per step). `make train` runs it once. To retrain every Monday at 3am, use 2 terminals:
+
+```bash
+make prefect-server   # terminal 1: starts the prefect server, UI on http://127.0.0.1:4200
+make deploy           # terminal 2: creates the "weekly-retraining" deployment (keep it running)
+```
+
+Open http://127.0.0.1:4200 to see the deployment and the flow runs. To test without waiting for Monday, click "Run" on the deployment in the UI, or in a 3rd terminal:
+`uv run prefect deployment run 'train-abalone-model/weekly-retraining'`
+
 The next commands (`make api`, `make docker-build`, `make docker-run`) are added in the next steps.
 
 ## 📋 What You'll Build

@@ -17,7 +17,7 @@ dependencies = [
   "pandas",
   "scikit-learn",
   "prefect",
-  "fastapi",
+  "fastapi<0.135",  # newer versions break the prefect server
   "uvicorn",
   "pydantic",
   "mlflow>=3.17.2",
