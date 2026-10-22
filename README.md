@@ -46,8 +46,6 @@ make deploy           # terminal 2: creates the "weekly-retraining" deployment (
 Open http://127.0.0.1:4200 to see the deployment and the flow runs. To test without waiting for Monday, click "Run" on the deployment in the UI, or in a 3rd terminal:
 `uv run prefect deployment run 'train-abalone-model/weekly-retraining'`
 
-The next commands (`make api`, `make docker-build`, `make docker-run`) are added in the next steps.
-
 ## API (FastAPI + Docker)
 
 The API predicts the rings (and the age = rings + 1.5) of one abalone. The inputs are validated with Pydantic (`sex` must be M, F or I, all the measurements must be > 0).
