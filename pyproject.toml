@@ -41,3 +41,6 @@ select = ["E", "F", "I"]
 
 [tool.setuptools]
 packages = []
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

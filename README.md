@@ -22,7 +22,19 @@ make install   # installs the dependencies and the pre-commit hooks
 make lint      # formats and checks the code with ruff
 ```
 
-The other commands (`make train`, `make api`, `make docker-build`, `make docker-run`) are added in the next steps.
+## Train the model
+
+The dataset is already in `data/abalone.csv` (UCI version, same data as Kaggle), so no Kaggle account needed.
+
+```bash
+make train   # trains the model and saves it in src/web_service/local_objects/model.pkl
+uv run pytest   # runs the tests
+```
+
+The code is in `src/modelling/`: `preprocessing.py` (load + split), `training.py` (model + metrics), `predicting.py` (predict with the saved model), `main.py` (runs everything).
+The model is a linear regression, with `Sex` one-hot encoded inside a sklearn pipeline (see `notebooks/` for the EDA and why we chose it).
+
+The next commands (`make api`, `make docker-build`, `make docker-run`) are added in the next steps.
 
 ## 📋 What You'll Build
 
