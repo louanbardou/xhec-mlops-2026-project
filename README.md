@@ -1,6 +1,6 @@
 # MLOps Project: Abalone Age Prediction
 
-[![Dashboard](docs/dashboard.jpg)](https://louanbardou.github.io/xhec-mlops-2026-project/)
+[![Dashboard](docs/dashboard-cropped.jpg)](https://louanbardou.github.io/xhec-mlops-2026-project/)
 
 **Live demo: https://louanbardou.github.io/xhec-mlops-2026-project/** (move the sliders, the abalone grows and the age updates; the "Age drivers" panel shows what counts in the model). See [Dashboard](#dashboard).
 
