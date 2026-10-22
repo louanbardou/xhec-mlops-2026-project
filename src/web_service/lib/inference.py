@@ -2,8 +2,8 @@ from functools import lru_cache
 
 import pandas as pd
 
-from src.modelling.predicting import predict
-from src.modelling.utils import load_pickle
+from src.modelling.step2_1_utils import load_pickle
+from src.modelling.step3_predicting import predict
 from src.web_service.lib.models import AbaloneInput, PredictionOutput
 
 # API field name -> column name in the dataset (the model was trained with these names)
