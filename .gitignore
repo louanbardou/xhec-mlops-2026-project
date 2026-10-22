@@ -92,3 +92,4 @@ mlflow.db
 
 # trained model
 src/web_service/local_objects/*.pkl
+src/web_service/local_objects/metrics.jsonl
