@@ -85,7 +85,7 @@ One web page served by the API (no extra dependency, no build): a single ocean s
 make api   # needs make train first, then open http://127.0.0.1:8001/dashboard
 ```
 
-With Docker: http://localhost:8000/dashboard. `make static` builds `dist/abalone/index.html`, a copy that needs no server (model and metrics are embedded), to put on any static host. The typical error shown under the age comes from `src/web_service/local_objects/metrics.jsonl` (one line added at each training).
+With Docker: http://localhost:8000/dashboard. `make static` builds `docs/index.html`, a copy that needs no server (model and metrics are embedded). It is served by GitHub Pages: https://louanbardou.github.io/xhec-mlops-2026-project/ The typical error shown under the age comes from `src/web_service/local_objects/metrics.jsonl` (one line added at each training).
 
 ## Project structure
 

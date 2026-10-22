@@ -2,7 +2,7 @@
 
 The model coefficients and the metrics are put inside the page, so it needs nothing else.
 Run from the project root (after `make train`): python bin/build_static.py
-The result is dist/abalone/index.html
+The result is docs/index.html (GitHub Pages serves the docs/ folder)
 """
 
 import json
@@ -10,7 +10,7 @@ from pathlib import Path
 
 from src.web_service.main import DASHBOARD, metrics, model_info
 
-OUT = Path("dist/abalone/index.html")
+OUT = Path("docs/index.html")
 
 data = json.dumps({"model": model_info(), "metrics": metrics()})
 html = DASHBOARD.read_text()
@@ -19,4 +19,4 @@ html = html.replace("<script>", f"<script>window.STATIC_DATA = {data};</script>\
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(html)
-print(f"Written {OUT} ({len(html) // 1024} KB), upload this folder to your site as /abalone/")
+print(f"Written {OUT} ({len(html) // 1024} KB), GitHub Pages or any static host can serve it")
