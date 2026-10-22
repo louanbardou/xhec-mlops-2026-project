@@ -2,7 +2,7 @@
 
 <a href="https://louanbardou.github.io/xhec-mlops-2026-project/"><img src="docs/dashboard-cropped.jpg" alt="Dashboard" width="50%"></a>
 
-**Live demo: https://louanbardou.github.io/xhec-mlops-2026-project/** (move the sliders, the abalone grows and the age updates; the "Age drivers" panel shows what counts in the model). See [Dashboard](#dashboard).
+**Live demo: https://louanbardou.github.io/xhec-mlops-2026-project/**
 
 Goal: predict the age (number of rings) of an abalone from its physical measurements, so nobody has to count rings under a microscope. The model is trained with Prefect and served with a FastAPI API in Docker.
 
@@ -79,17 +79,13 @@ curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" \
 
 ## Dashboard
 
-One web page served by the API (no extra dependency, no build): a single ocean scene.
-
-- **Left**: sliders for the measurements. The 3 partial weights can never exceed the whole weight.
-- **Center**: the abalone grows ring by ring up to its predicted age when the page opens, then follows the sliders smoothly (size, number of rings, age). The model is a linear regression, so the page computes the estimate from the coefficients of `/model` (no delay) and the API confirms it through `/predict`.
-- **Right**: "Age drivers", the share of each measurement in the linear regression (coefficient × realistic range of the measurement, in %), biggest first.
+An ocean scene served by the API: move the sliders (left) and the abalone grows ring by ring up to its predicted age. The "Age drivers" panel (right) shows how much each measurement counts in the linear model.
 
 ```bash
-make api   # needs make train first, then open http://127.0.0.1:8001/dashboard
+make api   # train first (make train), then open http://127.0.0.1:8001/dashboard
 ```
 
-With Docker: http://localhost:8000/dashboard. `make static` builds `docs/index.html`, a copy that needs no server (model and metrics are embedded). It is served by GitHub Pages: https://louanbardou.github.io/xhec-mlops-2026-project/ The typical error shown under the age comes from `src/web_service/local_objects/metrics.jsonl` (one line added at each training).
+With Docker: http://localhost:8000/dashboard. A copy that needs no server (used by GitHub Pages) is built into `docs/index.html` with `make static`.
 
 ## Project structure
 
