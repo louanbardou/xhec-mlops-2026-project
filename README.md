@@ -1,60 +1,34 @@
-<div align="center">
-
 # MLOps Project: Abalone Age Prediction
 
-[![Python Version](https://img.shields.io/badge/python-3.10%20or%203.11-blue.svg)]()
-[![Linting: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-informational?logo=pre-commit&logoColor=white)](https://github.com/artefactory/xhec-mlops-project-student/blob/main/.pre-commit-config.yaml)
-</div>
+Goal: predict the age (number of rings) of an abalone from its physical measurements, so nobody has to count rings under a microscope. The model is trained with Prefect and served with a FastAPI API in Docker.
 
-## 🎯 Project Overview
+Dataset: [Kaggle abalone dataset](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset)
 
-Welcome to your MLOps project! In this hands-on project, you'll build a complete machine learning system to predict the age of abalone (a type of sea snail) using physical measurements instead of the traditional time-consuming method of counting shell rings under a microscope.
+## Team
 
-**Your Mission**: Transform a simple ML model into a production-ready system with automated training, deployment, and prediction capabilities.
+| Name | GitHub |
+|---|---|
+| Lancelot Brisset | brissetlancelot92 |
+| Louan Bardou | louanbardou |
+| Alix Bernal | ALX-7777 |
+| Blanche Mahe | blanchemahe |
 
-## 📊 About the Dataset
+## Setup
 
-Traditionally, determining an abalone's age requires:
-1. Cutting the shell through the cone
-2. Staining it 
-3. Counting rings under a microscope (very time-consuming!)
+You need [uv](https://docs.astral.sh/uv/) (it installs Python 3.11 for you) and make.
 
-**Your Goal**: Use easier-to-obtain physical measurements (shell weight, diameter, etc.) to predict the age automatically.
+```bash
+make install   # installs the dependencies and the pre-commit hooks
+make lint      # formats and checks the code with ruff
+```
 
-📥 **Download**: Get the dataset from the [Kaggle page](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset)
-
-
-## 🚀 Quick Start
-
-### Prerequisites
-- GitHub account
-- [Kaggle account](https://www.kaggle.com/account/login?phase=startRegisterTab&returnUrl=%2F) (for dataset download)
-- Python 3.10 or 3.11
-
-### Setup Steps
-
-1. **Fork this repository** 
-   - ⚠️ **Important**: Uncheck "Copy the `main` branch only" to get all project branches
-   
-2. **Add your team members** as admins to your forked repository
-
-3. **Set up your development environment**:
-   ```bash
-   # Create and activate a virtual environment
-   uv sync 
-   source venv/bin/activate # on Windows: venv\Scripts\activate
-
-   # Install pre-commit hooks for code quality
-    uv pip install pre-commit
-    uv run pre-commit install
-   ```
+The other commands (`make train`, `make api`, `make docker-build`, `make docker-run`) are added in the next steps.
 
 ## 📋 What You'll Build
 
 By the end of this project, you'll have created:
 
-### 🤖 **Automated ML Pipeline** 
+### 🤖 **Automated ML Pipeline**
 - Training workflows using Prefect
 - Automatic model retraining on schedule
 - Reproducible model and data processing
@@ -67,7 +41,7 @@ By the end of this project, you'll have created:
 ### 📊 **Production-Ready Code**
 - Clean, well-documented code
 - Automated testing and formatting
-- Proper error handling 
+- Proper error handling
 
 ## 📝 How to Work on This Project
 
@@ -102,7 +76,7 @@ git push
 
 Then:
 1. 📖 Read the PR_i.md file carefully
-2. 💻 Complete all the TODOs in the code  
+2. 💻 Complete all the TODOs in the code
 3. 🔧 Test your changes
 4. 📤 Open **ONE** pull request to your main branch
 5. ✅ Merge the pull request
@@ -143,20 +117,28 @@ uv sync
 - Remove all TODOs and unused code before final submission
 - Use clear variable names and add docstrings
 
+## ⚠️ Other Instructions
+
+- **GitHub IDs**: Every student must make at least one significant commit that is merged into the main branch. Changing a variable value or adding a space is not significant. Don't fail the module over a mistake like this.
+- **No squashing**: Do not squash your commits when you merge a branch. Your commit history is used to track your progress.
+- **No blind coding or overengineering**: Stay in control of your code and understand all of it. This is evaluated specifically, so keep your code straight to the point and objective-oriented.
+- **Clear setup instructions**: Keep them simple. Evaluators won't spend hours trying to start your project (but they'll try harder than [this dad](https://www.youtube.com/watch?v=H_ecbkcYH94)). A Makefile would be appreciated.
+- **Main branch only**: Only the work on the `main` branch is evaluated. Any work left on other branches is not considered.
+
 ## 📊 Evaluation Criteria
 
 Your project will be evaluated on:
 
-### 🔍 **Code Quality** 
+### 🔍 **Code Quality**
 - Clean, readable code structure
-- Proper naming conventions  
+- Proper naming conventions
 - Good use of docstrings and type hints
 
 ### 🎨 **Code Formatting**
 - Consistent style (automated with pre-commit)
 - Professional presentation
 
-### ⚙️ **Functionality** 
+### ⚙️ **Functionality**
 - Code runs without errors
 - All requirements implemented correctly
 
@@ -177,10 +159,10 @@ When you're done, your repository should contain:
 
 ✅ **Automated Training Pipeline**
 - [ ] Prefect workflows for model training
-- [ ] Separate modules for training and inference  
+- [ ] Separate modules for training and inference
 - [ ] Reproducible model and encoder generation
 
-✅ **Automated Deployment**  
+✅ **Automated Deployment**
 - [ ] Prefect deployment for regular retraining
 
 ✅ **Production API**
