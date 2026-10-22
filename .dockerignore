@@ -1,0 +1,7 @@
+.venv
+.git
+__pycache__
+notebooks
+mlflow.db
+mlruns
+src/web_service/local_objects/*.pkl

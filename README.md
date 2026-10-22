@@ -48,98 +48,45 @@ Open http://127.0.0.1:4200 to see the deployment and the flow runs. To test with
 
 The next commands (`make api`, `make docker-build`, `make docker-run`) are added in the next steps.
 
-## 📋 What You'll Build
+## API (FastAPI + Docker)
 
-By the end of this project, you'll have created:
+The API predicts the rings (and the age = rings + 1.5) of one abalone. The inputs are validated with Pydantic (`sex` must be M, F or I, all the measurements must be > 0).
 
-### 🤖 **Automated ML Pipeline**
-- Training workflows using Prefect
-- Automatic model retraining on schedule
-- Reproducible model and data processing
-
-### 🌐 **Prediction API**
-- REST API for real-time predictions
-- Input validation with Pydantic
-- Docker containerization
-
-### 📊 **Production-Ready Code**
-- Clean, well-documented code
-- Automated testing and formatting
-- Proper error handling
-
-## 📝 How to Work on This Project
-
-### The Branch-by-Branch Approach
-
-This project is organized into numbered branches, each representing a step in building your MLOps system. Think of it like a guided tutorial where each branch teaches you something new!
-
-**Here's how it works**:
-
-1. **Each branch = One pull request** with specific tasks
-2. **Follow the numbers** (branch_0, branch_1, etc.) in order
-3. **Read the PR instructions** (PR_0.md, PR_1.md, etc.) before starting
-4. **Complete all TODOs** in that branch's code
-5. **Create a pull request** when done
-6. **Merge and move to the next branch**
-
-### Step-by-Step Workflow
-
-For each numbered branch:
+Without Docker (needs `make train` first):
 
 ```bash
-# Switch to the branch
-git checkout branch_number_i
-
-# Get latest changes (except for branch_0)
-git pull origin main
-# Note: A VIM window might open - just type ":wq" to close it
-
-# Push your branch
-git push
+make api   # http://127.0.0.1:8001/docs
 ```
 
-Then:
-1. 📖 Read the PR_i.md file carefully
-2. 💻 Complete all the TODOs in the code
-3. 🔧 Test your changes
-4. 📤 Open **ONE** pull request to your main branch
-5. ✅ Merge the pull request
-6. 🔄 Move to the next branch
-
-> **💡 Pro Tip**: Always integrate your previous work when starting a new branch (except branch_0)!
-
-### 🔍 Understanding Pull Requests
-
-Pull Requests (PRs) are how you propose and review changes before merging them into your main codebase. They're essential for team collaboration!
-
-**Important**: When creating a PR, make sure you're merging into YOUR forked repository, not the original:
-
-❌ **Wrong** (merging to original repo):
-![PR Wrong](assets/PR_wrong.png)
-
-✅ **Correct** (merging to your fork):
-![PR Right](assets/PR_right.png)
-
-## 💡 Development Tips
-
-### Managing Dependencies
-
-Use uv to manage dependencies. Install or update packages with:
+With Docker (the image trains the model when it is built, and runs the API + the prefect server):
 
 ```bash
-uv add <package>==<version>
+make docker-build
+make docker-run   # API on http://localhost:8000, prefect UI on http://localhost:4200
 ```
 
-Then sync the environment and regenerate the dependency files:
+Try it:
 
 ```bash
-uv sync
+curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" \
+  -d '{"sex": "M", "length": 0.455, "diameter": 0.365, "height": 0.095, "whole_weight": 0.514, "shucked_weight": 0.2245, "viscera_weight": 0.101, "shell_weight": 0.15}'
+# {"rings": 9.22, "age": 10.72}
 ```
 
-### Code Quality
-- The pre-commit hooks will automatically format your code
-- Remove all TODOs and unused code before final submission
-- Use clear variable names and add docstrings
+(When using `make api` instead of Docker, the port is 8001.)
+
+## Project structure
+
+```
+data/abalone.csv        dataset
+notebooks/              EDA and first model
+src/modelling/          training code (prefect flow, deployment)
+src/web_service/        FastAPI app
+tests/                  pytest
+bin/run_services.sh     starts the prefect server and the API in the container
+Dockerfile.app          Docker image
+Makefile                shortcuts for everything above
+```
 
 ## ⚠️ Other Instructions
 
@@ -148,57 +95,3 @@ uv sync
 - **No blind coding or overengineering**: Stay in control of your code and understand all of it. This is evaluated specifically, so keep your code straight to the point and objective-oriented.
 - **Clear setup instructions**: Keep them simple. Evaluators won't spend hours trying to start your project (but they'll try harder than [this dad](https://www.youtube.com/watch?v=H_ecbkcYH94)). A Makefile would be appreciated.
 - **Main branch only**: Only the work on the `main` branch is evaluated. Any work left on other branches is not considered.
-
-## 📊 Evaluation Criteria
-
-Your project will be evaluated on:
-
-### 🔍 **Code Quality**
-- Clean, readable code structure
-- Proper naming conventions
-- Good use of docstrings and type hints
-
-### 🎨 **Code Formatting**
-- Consistent style (automated with pre-commit)
-- Professional presentation
-
-### ⚙️ **Functionality**
-- Code runs without errors
-- All requirements implemented correctly
-
-### 📖 **Documentation & Reproducibility**
-- Clear README with setup instructions
-- Team member names and GitHub usernames
-- Step-by-step instructions to run everything
-
-### 🤝 **Collaboration**
-- Effective use of Pull Requests
-- Good teamwork and communication
-
----
-
-## 🎯 Final Deliverables Checklist
-
-When you're done, your repository should contain:
-
-✅ **Automated Training Pipeline**
-- [ ] Prefect workflows for model training
-- [ ] Separate modules for training and inference
-- [ ] Reproducible model and encoder generation
-
-✅ **Automated Deployment**
-- [ ] Prefect deployment for regular retraining
-
-✅ **Production API**
-- [ ] Working REST API for predictions
-- [ ] Pydantic input validation
-- [ ] Docker containerization
-
-✅ **Professional Documentation**
-- [ ] Updated README with team info
-- [ ] Clear setup and run instructions
-- [ ] All TODOs removed from code
-
----
-
-**Ready to start? Head to branch_0 and read PR_0.md for your first task! 🚀**

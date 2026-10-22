@@ -1,9 +1,7 @@
 import pandas as pd
+from sklearn.pipeline import Pipeline
 
-from src.modelling.utils import load_pickle
 
-
-def predict(data: pd.DataFrame) -> list[float]:
-    """Predict the number of rings for new abalones with the saved model."""
-    model = load_pickle()
+def predict(model: Pipeline, data: pd.DataFrame) -> list[float]:
+    """Predict the number of rings for new abalones."""
     return model.predict(data).tolist()
