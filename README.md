@@ -31,7 +31,7 @@ make train   # trains the model and saves it in src/web_service/local_objects/mo
 uv run pytest   # runs the tests
 ```
 
-The code is in `src/modelling/`: `preprocessing.py` (load + split), `training.py` (model + metrics), `predicting.py` (predict with the saved model), `main.py` (runs everything).
+The code is in `src/modelling/`: `step1_preprocessing.py` (load + split), `step2_training.py` (model + metrics), `step2_1_utils.py` (save and load the model), `step3_predicting.py` (predict with the saved model), `main.py` (runs everything).
 The model is a linear regression, with `Sex` one-hot encoded inside a sklearn pipeline (see `notebooks/` for the EDA and why we chose it).
 
 ## Prefect (automatic retraining)

@@ -1,7 +1,7 @@
 import pandas as pd
 
-from src.modelling.preprocessing import load_data, split_data
-from src.modelling.training import evaluate_model, train_model
+from src.modelling.step1_preprocessing import load_data, split_data
+from src.modelling.step2_training import evaluate_model, train_model
 
 
 def test_train_and_evaluate():
