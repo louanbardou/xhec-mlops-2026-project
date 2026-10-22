@@ -1,4 +1,4 @@
-.PHONY: install lint train prefect-server deploy api docker-build docker-run
+.PHONY: install lint train prefect-server deploy api docker-build docker-run static
 
 install:
 	uv sync
@@ -25,3 +25,6 @@ docker-build:
 
 docker-run:
 	docker run -p 0.0.0.0:8000:8001 -p 0.0.0.0:4200:4201 abalone-app
+
+static:
+	uv run python bin/build_static.py
