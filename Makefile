@@ -27,4 +27,4 @@ docker-run:
 	docker run -p 0.0.0.0:8000:8001 -p 0.0.0.0:4200:4201 abalone-app
 
 static:
-	uv run python bin/build_static.py
+	uv run python -m bin.build_static
