@@ -1,0 +1,21 @@
+.PHONY: install lint train api docker-build docker-run
+
+install:
+	uv sync
+	uv run pre-commit install
+
+lint:
+	uv run ruff check . --fix
+	uv run ruff format .
+
+train:
+	uv run python -m src.modelling.main data/abalone.csv
+
+api:
+	uv run uvicorn src.web_service.main:app --port 8001
+
+docker-build:
+	docker build -f Dockerfile.app -t abalone-app .
+
+docker-run:
+	docker run -p 0.0.0.0:8000:8001 -p 0.0.0.0:4200:4201 abalone-app
