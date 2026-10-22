@@ -1,5 +1,9 @@
 # MLOps Project: Abalone Age Prediction
 
+[![Dashboard](docs/dashboard.jpg)](https://louanbardou.github.io/xhec-mlops-2026-project/)
+
+**Live demo: https://louanbardou.github.io/xhec-mlops-2026-project/** (move the sliders, the abalone grows and the age updates; the "Age drivers" panel shows what counts in the model). See [Dashboard](#dashboard).
+
 Goal: predict the age (number of rings) of an abalone from its physical measurements, so nobody has to count rings under a microscope. The model is trained with Prefect and served with a FastAPI API in Docker.
 
 Dataset: [Kaggle abalone dataset](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset)
